@@ -1,0 +1,8 @@
+## Interface: 30300
+## Title: oWatchFrameToggler
+## Author: Haste
+## Version: 1.0
+## X-eMail: troeks@gmail.com
+## Notes: Disables the watch frame during boss encounters.
+
+auto.lua
