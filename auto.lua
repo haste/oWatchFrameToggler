@@ -2,14 +2,24 @@ local addon = CreateFrame'Frame'
 
 addon:RegisterEvent'PLAYER_ENTERING_WORLD'
 addon:RegisterEvent'INSTANCE_ENCOUNTER_ENGAGE_UNIT'
+addon:RegisterEvent'UNIT_TARGETABLE_CHANGED'
+addon:RegisterEvent'PLAYER_REGEN_ENABLED'
+
+local BossExists = function()
+	for i=1,MAX_BOSS_FRAMES do
+		if(UnitExists('boss' .. i)) then
+			return true
+		end
+	end
+end
 
 -- Defensive coding inc.
 addon:SetScript('OnEvent', function(self, event)
-	if(UnitExists'boss1') then
+	if(BossExists()) then
 		if(not WatchFrame.collapsed) then
 			WatchFrame_CollapseExpandButton_OnClick(WatchFrame_CollapseExpandButton)
 		end
-	elseif(WatchFrame.collapsed) then
+	elseif(WatchFrame.collapsed and InCombatLockdown()) then
 		WatchFrame_CollapseExpandButton_OnClick(WatchFrame_CollapseExpandButton)
 	end
 end)
