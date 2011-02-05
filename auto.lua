@@ -19,7 +19,7 @@ addon:SetScript('OnEvent', function(self, event)
 		if(not WatchFrame.collapsed) then
 			WatchFrame_CollapseExpandButton_OnClick(WatchFrame_CollapseExpandButton)
 		end
-	elseif(WatchFrame.collapsed and InCombatLockdown()) then
+	elseif(WatchFrame.collapsed and not InCombatLockdown()) then
 		WatchFrame_CollapseExpandButton_OnClick(WatchFrame_CollapseExpandButton)
 	end
 end)
